@@ -9,13 +9,16 @@ export interface PreviewSocialLinks {
 }
 
 export interface PreviewItem {
-  avatarUrl: string;
-  displayName: string;
-  handle: string;
+  // Profile card fields
+  avatarUrl?: string;
+  displayName?: string;
+  handle?: string;
   description?: string;
   mediaUrls?: string[]; // images or video thumbnails
   theme?: 'light' | 'dark';
   social?: PreviewSocialLinks;
+  // Image-only card
+  imageUrl?: string;
 }
 
 @Component({

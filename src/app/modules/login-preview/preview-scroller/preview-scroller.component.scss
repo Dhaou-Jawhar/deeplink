@@ -132,6 +132,21 @@
   flex-direction: column;
 }
 
+.card.image-only {
+  padding: 0;
+  border: none;
+  background: transparent;
+  min-height: auto;
+}
+
+.card.image-only img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
 .card.theme-dark {
   background: #151515;
   color: #f3f3f3;
