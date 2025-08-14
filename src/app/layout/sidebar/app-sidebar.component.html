@@ -1,0 +1,58 @@
+<aside class="sidebar" [ngClass]="{ 'collapsed': collapsed, 'active': mobileActive }">
+  <div class="logo-row">
+    <i class="pi pi-bolt logo-icon"></i>
+    <span class="logo-text" *ngIf="!collapsed">touchh.it</span>
+  </div>
+
+  <nav class="nav">
+    <a *ngFor="let item of sidebarItems" #rla="routerLinkActive"
+       pRipple
+       class="nav-item"
+       [routerLink]="item.path"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }"
+       [pTooltip]="collapsed ? item.label : undefined"
+       tooltipPosition="right"
+       (click)="onItemClick()"
+       [attr.aria-current]="rla.isActive ? 'page' : null">
+      <ng-container *ngIf="!item.svg; else svgIcon">
+        <i [class]="item.icon"></i>
+      </ng-container>
+      <ng-template #svgIcon>
+        <svg class="svg-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- custom 'stalking' icon: eye with four rounded corners -->
+          <path d="M7 12s2.5-4 5-4 5 4 5 4-2.5 4-5 4-5-4-5-4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="12" cy="12" r="1.75" fill="currentColor"/>
+          <path d="M7 5.5c-1.5 0-2 .5-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M17 5.5c1.5 0 2 .5 2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M7 18.5c-1.5 0-2-.5-2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M17 18.5c1.5 0 2-.5 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </ng-template>
+      <span class="label" *ngIf="!collapsed">{{ item.label }}</span>
+    </a>
+  </nav>
+
+  <div class="spacer"></div>
+
+  <div class="profile">
+    <div class="avatar" [pTooltip]="collapsed ? 'shadcn\nm@example.com' : undefined" tooltipPosition="right">
+      <img src="assets/avatar.png" alt="avatar" onerror="this.style.display='none'">
+    </div>
+
+    <div class="profile-meta" *ngIf="!collapsed">
+      <div class="name">Jawhar</div>
+      <div class="email">m&#64;example.com</div>
+    </div>
+
+    <p-menu #menu [popup]="true" [appendTo]="'body'" [model]="profileMenuItems"></p-menu>
+    <button pButton type="button" class="p-button-text more" (click)="menu.toggle($event)" pRipple [pTooltip]="collapsed ? 'Menu' : undefined" tooltipPosition="center">
+      <i class="pi" [ngClass]="{
+        'pi-ellipsis-h': menuIcon === 'dots',
+        'pi-sort-alt': menuIcon === 'arrows'
+      }"></i>
+    </button>
+  </div>
+</aside>
+
+

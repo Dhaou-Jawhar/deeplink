@@ -1,0 +1,43 @@
+.layout-wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: transparent;
+}
+
+.layout-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  transition: grid-template-columns 200ms ease;
+}
+
+.layout-wrapper.collapsed .layout-container {
+  grid-template-columns: 72px 1fr;
+}
+
+.layout-main-container {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-main {
+  padding: 2rem;
+}
+
+.layout-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(1px);
+  z-index: 900; /* below the sidebar (1000) */
+}
+
+/* Mobile overlay behavior */
+@media (max-width: 1023px) {
+  .layout-container {
+    grid-template-columns: 0 1fr;
+  }
+  /* Keep main content full width; sidebar overlays (fixed positioning) */
+}
+

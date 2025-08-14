@@ -1,0 +1,137 @@
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  min-height: calc(100vh - 56px);
+  position: relative;
+  transition: width 200ms ease; /* desktop/collapsed animation */
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+}
+
+.sidebar.collapsed { width: 72px; }
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  color: var(--sidebar-text);
+}
+.logo-icon { color: var(--accent); }
+.logo-text { font-weight: 700; }
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: background-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+.nav-item .pi {
+  color: var(--sidebar-icon);
+  font-size: 1.15rem;
+  width: 36px;
+  height: 36px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease, color .15s ease;
+}
+
+.nav-item .svg-icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sidebar-icon);
+}
+
+.nav-item:hover { background: #faf8ff; }
+.nav-item:hover .pi { transform: scale(1.05); }
+
+.nav-item.active {
+  background: var(--accent-ghost);
+  color: var(--accent);
+}
+.nav-item.active .pi { color: var(--accent); }
+.nav-item.active .svg-icon { color: var(--accent); }
+
+.sidebar.collapsed .nav-item { justify-content: center; }
+.sidebar.collapsed .nav-item .label { display: none; }
+.sidebar.collapsed .nav-item { border-radius: 10px; }
+
+.spacer { flex: 1; }
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eee;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.profile-meta { display: grid; }
+.profile-meta .name { font-weight: 600; font-size: 14px; }
+.profile-meta .email { font-size: 12px; color: #888; }
+
+.more { margin-left: auto; }
+.danger .p-menuitem-text { color: #dc2626; }
+
+/* Mobile sidebar: off-canvas overlay */
+@media (max-width: 1023px) {
+  .sidebar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    width: 280px; /* fixed width on mobile */
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    z-index: 1000;
+    transform: translateX(-100%); /* hidden by default */
+    transition: transform 200ms ease; /* animate slide */
+  }
+  .sidebar.active { transform: translateX(0); }
+}
+
+/* Custom "radar" look for stalking icon */
+.touch-radar::before { content: ""; }
+.touch-radar { position: relative; }
+.touch-radar::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--sidebar-icon);
+  opacity: .6;
+  pointer-events: none;
+}
+.nav-item.active .touch-radar::after { border-top-color: var(--accent); }
+

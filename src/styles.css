@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+/* PrimeNG Theme & Base */
+@import "primeng/resources/themes/lara-light-purple/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+
+:root {
+  --sidebar-bg:#fff; 
+  --sidebar-border:#eee; 
+  --sidebar-text:#555;
+  --sidebar-icon:#7a7a7a; 
+  --accent:#8b5cf6; 
+  --accent-ghost:#f1eaff;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif);
+  background: #fafafa;
+  color: #222;
+}

@@ -1,0 +1,147 @@
+<!-- Desktop layout -->
+<div class="desktop-wrapper hidden lg:block" aria-hidden="false">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="columns">
+    <div class="col" style="--speed: 10s">
+      <div class="col-inner">
+        <ng-container *ngFor="let item of col0">
+          <div class="card" [ngClass]="{'theme-light': (item.theme || 'light')==='light', 'theme-dark': item.theme==='dark'}">
+            <div class="card-header">
+              <img class="avatar" [src]="item.avatarUrl" [alt]="item.displayName" loading="lazy" />
+              <div class="meta">
+                <div class="name">{{item.displayName}}</div>
+                <div class="handle">{{item.handle}}</div>
+              </div>
+            </div>
+            <div class="card-body" *ngIf="item.description">{{item.description}}</div>
+            <div class="media" *ngIf="item.mediaUrls?.length">
+              <img *ngFor="let media of item.mediaUrls" [src]="media" alt="media" loading="lazy" />
+            </div>
+            <div class="social" *ngIf="item.social">
+              <a *ngIf="item.social.twitter" [href]="item.social.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <i class="pi pi-twitter"></i>
+              </a>
+              <a *ngIf="item.social.instagram" [href]="item.social.instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="pi pi-instagram"></i>
+              </a>
+              <a *ngIf="item.social.linkedin" [href]="item.social.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="pi pi-linkedin"></i>
+              </a>
+              <a *ngIf="item.social.website" [href]="item.social.website" target="_blank" rel="noopener noreferrer" aria-label="Website">
+                <i class="pi pi-external-link"></i>
+              </a>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="col" style="--speed: 12s">
+      <div class="col-inner reverse">
+        <ng-container *ngFor="let item of col1">
+          <div class="card" [ngClass]="{'theme-light': (item.theme || 'light')==='light', 'theme-dark': item.theme==='dark'}">
+            <div class="card-header">
+              <img class="avatar" [src]="item.avatarUrl" [alt]="item.displayName" loading="lazy" />
+              <div class="meta">
+                <div class="name">{{item.displayName}}</div>
+                <div class="handle">{{item.handle}}</div>
+              </div>
+            </div>
+            <div class="card-body" *ngIf="item.description">{{item.description}}</div>
+            <div class="media" *ngIf="item.mediaUrls?.length">
+              <img *ngFor="let media of item.mediaUrls" [src]="media" alt="media" loading="lazy" />
+            </div>
+            <div class="social" *ngIf="item.social">
+              <a *ngIf="item.social.twitter" [href]="item.social.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <i class="pi pi-twitter"></i>
+              </a>
+              <a *ngIf="item.social.instagram" [href]="item.social.instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="pi pi-instagram"></i>
+              </a>
+              <a *ngIf="item.social.linkedin" [href]="item.social.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="pi pi-linkedin"></i>
+              </a>
+              <a *ngIf="item.social.website" [href]="item.social.website" target="_blank" rel="noopener noreferrer" aria-label="Website">
+                <i class="pi pi-external-link"></i>
+              </a>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="col" style="--speed: 14s">
+      <div class="col-inner">
+        <ng-container *ngFor="let item of col2">
+          <div class="card" [ngClass]="{'theme-light': (item.theme || 'light')==='light', 'theme-dark': item.theme==='dark'}">
+            <div class="card-header">
+              <img class="avatar" [src]="item.avatarUrl" [alt]="item.displayName" loading="lazy" />
+              <div class="meta">
+                <div class="name">{{item.displayName}}</div>
+                <div class="handle">{{item.handle}}</div>
+              </div>
+            </div>
+            <div class="card-body" *ngIf="item.description">{{item.description}}</div>
+            <div class="media" *ngIf="item.mediaUrls?.length">
+              <img *ngFor="let media of item.mediaUrls" [src]="media" alt="media" loading="lazy" />
+            </div>
+            <div class="social" *ngIf="item.social">
+              <a *ngIf="item.social.twitter" [href]="item.social.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <i class="pi pi-twitter"></i>
+              </a>
+              <a *ngIf="item.social.instagram" [href]="item.social.instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="pi pi-instagram"></i>
+              </a>
+              <a *ngIf="item.social.linkedin" [href]="item.social.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="pi pi-linkedin"></i>
+              </a>
+              <a *ngIf="item.social.website" [href]="item.social.website" target="_blank" rel="noopener noreferrer" aria-label="Website">
+                <i class="pi pi-external-link"></i>
+              </a>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+</div>
+
+<!-- Mobile layout -->
+<div class="mobile-wrapper block lg:hidden" aria-hidden="false">
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="horizontal" style="--speed: 15s">
+    <ng-container *ngFor="let item of horizontalItems">
+      <div class="card" [ngClass]="{'theme-light': (item.theme || 'light')==='light', 'theme-dark': item.theme==='dark'}">
+        <div class="card-header">
+          <img class="avatar" [src]="item.avatarUrl" [alt]="item.displayName" loading="lazy" />
+          <div class="meta">
+            <div class="name">{{item.displayName}}</div>
+            <div class="handle">{{item.handle}}</div>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="item.description">{{item.description}}</div>
+        <div class="media" *ngIf="item.mediaUrls?.length">
+          <img *ngFor="let media of item.mediaUrls" [src]="media" alt="media" loading="lazy" />
+        </div>
+        <div class="social" *ngIf="item.social">
+          <a *ngIf="item.social.twitter" [href]="item.social.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <i class="pi pi-twitter"></i>
+          </a>
+          <a *ngIf="item.social.instagram" [href]="item.social.instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="pi pi-instagram"></i>
+          </a>
+          <a *ngIf="item.social.linkedin" [href]="item.social.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="pi pi-linkedin"></i>
+          </a>
+          <a *ngIf="item.social.website" [href]="item.social.website" target="_blank" rel="noopener noreferrer" aria-label="Website">
+            <i class="pi pi-external-link"></i>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+</div>
+
+

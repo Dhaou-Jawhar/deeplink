@@ -1,0 +1,51 @@
+<div class="users-container">
+  <div class="users-header">
+    <h1>Users Management</h1>
+    <button class="btn btn-primary" routerLink="/back-office/users/add">
+      <span>+ Add User</span>
+    </button>
+  </div>
+
+  <div class="users-table-container">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="role-badge" [class]="'role-' + user.role.toLowerCase()">
+              {{ user.role }}
+            </span>
+          </td>
+          <td>
+            <span class="status-badge" [class]="'status-' + user.status.toLowerCase()">
+              {{ user.status }}
+            </span>
+          </td>
+          <td class="actions">
+            <button class="btn btn-sm btn-info" [routerLink]="['/back-office/users/detail', user.id]">
+              View
+            </button>
+            <button class="btn btn-sm btn-warning" [routerLink]="['/back-office/users/edit', user.id]">
+              Edit
+            </button>
+            <button class="btn btn-sm btn-danger">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 

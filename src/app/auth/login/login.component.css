@@ -1,0 +1,258 @@
+/* =====================================================================
+   LOGIN PAGE (LEFT COLUMN) + SCROLLING CARDS SECTION (RIGHT COLUMN)
+   This stylesheet arranges the overall login page layout and styles the
+   login form card. The scrolling cards visuals themselves are styled in
+   `src/app/modules/login-preview/preview-scroller/preview-scroller.component.scss`.
+   Key selectors:
+   - .auth-grid  → 2-column layout (login left, scroller right)
+   - .auth-left  → login column container
+   - .auth-right → scroller column container (hosts <app-preview-scroller>)
+   - .login-card → the login card UI
+   ===================================================================== */
+
+/* Wrapper and top-level layout */
+.auth-wrapper {
+  /* Lock page to viewport height and prevent page scrolling */
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* white background */
+  position: relative; /* enable bottom fade overlay */
+  --page-fade-color: #ffffff; /* page background color for fade */
+}
+
+/* Bottom page fade overlay */
+.auth-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80px; /* fade thickness */
+  pointer-events: none;
+  z-index: 3;
+  background: linear-gradient(to top, var(--page-fade-color), rgba(255, 255, 255, 0));
+}
+
+.auth-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  position: relative;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #111216; /* dark brand on white bg */
+  text-decoration: none;
+}
+
+.brand-logo { height: 50px; width: auto; display: block; }
+
+.brand-text {
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: 0.4px;
+}
+
+/* Top action aligned with logo (CTA: Créer un compte) */
+.top-action {
+  position: absolute;
+  left: calc(50% - 270px); /* moved further to the left */
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 1;
+  transition: none; /* remove hover animation */
+}
+
+/* Prevent hover transform override from .btn-primary:hover */
+.auth-topbar .top-action.btn.btn-primary:hover,
+.auth-topbar .top-action.btn.btn-primary:focus {
+  transform: translate(-50%, -50%) !important;
+  box-shadow: 0 10px 30px rgba(147, 92, 255, .35);
+}
+
+
+/* =====================================================================
+   PAGE GRID
+   2 columns: 520px (login) + flexible (scroller). The horizontal spacing
+   between the two sections is controlled by column-gap.
+   ===================================================================== */
+.auth-grid {
+  display: grid;
+  /* left column: login, right: preview */
+  grid-template-columns: 640px 1fr; /* wider login column */
+  align-items: start;
+  column-gap: 300px; /* spacing between login and scrolling cards sections */
+  row-gap: 24px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 24px;
+  flex: 1 1 auto;
+  /* Allow grid to shrink within viewport without forcing body scroll */
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Login column container (LEFT) */
+.auth-left {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 100px;
+  justify-content: flex-start;
+}
+
+/* Scroller column container (RIGHT)
+   Hosts <app-preview-scroller>; visual styling here is only the backdrop
+   container. The scrolling behavior/animations live in the component SCSS. */
+.auth-right {
+  border-radius: 20px;
+  background: radial-gradient(1000px 400px at -100px -100px, rgba(124, 77, 255, 0.25), transparent 40%),
+              linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* =====================================================================
+   LOGIN CARD (visual design of the form)
+   ===================================================================== */
+.login-card {
+  width: 100%;
+  max-width: 640px; /* widened to match grid */
+  /* glass effect */
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 20px 60px rgba(16, 24, 40, 0.08), inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+.login-header { text-align: center; margin-bottom: 20px; }
+.login-header h2 { margin: 0 0 6px 0; font-size: 22px; color: #111216; }
+.login-header p { margin: 0; color: #6b7280; font-size: 12px; }
+
+/* Inputs */
+.form-group { margin-bottom: 12px; }
+.form-group input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-size: 14px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #7c4dff;
+  box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.15);
+}
+
+/* Buttons */
+.btn { 
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 10px; cursor: pointer; text-decoration: none; user-select: none;
+  border: 0; border-radius: 999px; height: 44px; padding: 0 16px;
+  font-weight: 600; transition: transform .12s ease, box-shadow .2s ease;
+}
+.btn-full { width: 100%; }
+
+.btn-primary { background: #935CFF; color: #fff; box-shadow: 0 10px 30px rgba(147, 92, 255, .35); }
+.btn-primary:hover { transform: translateY(-1px); }
+
+.btn-outline { background: #fff; border: 1px solid #e5e7eb; color: #111216; }
+.btn-outline:hover { box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+
+.social-btn .icon { display: inline-flex; align-items: center; }
+.social-btn.google { --accent: #4285F4; }
+.social-btn.apple { --accent: #000; }
+
+.forgot-password {
+  display: inline-block;
+  margin: 10px auto 0;
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 12px;
+  text-align: center;
+}
+.forgot-password:hover { text-decoration: underline; }
+
+.divider {
+  position: relative;
+  margin: 14px 0;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 12px;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: #e5e7eb;
+}
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+/* =====================================================================
+   RESPONSIVE (Mobile)
+   Collapses to a single column; the scroller section hides under 900px.
+   ===================================================================== */
+@media (max-width: 900px) {
+  /* Single column layout on small screens */
+  .auth-grid { grid-template-columns: 1fr; padding: 16px; }
+
+  /* Hide the desktop scroller column inside the grid */
+  .auth-right { display: none; }
+
+  /* Center the login card and remove desktop left padding */
+  .auth-left {
+    justify-content: center;
+    padding-left: 0 !important;
+  }
+
+  /* Make the login card take full available width */
+  .login-card {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .auth-topbar { padding: 12px 16px; }
+
+  /* Ensure the logo scales nicely on phones */
+  .brand-logo {
+    height: 50px;
+    max-width: 60vw;
+  }
+
+  /* Prevent CTA from overlapping the logo on small screens */
+  .top-action {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-left: auto; /* push to the right side */
+  }
+}
+
+/* Extra-small devices */
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 40px;
+    max-width: 56vw;
+  }
+}

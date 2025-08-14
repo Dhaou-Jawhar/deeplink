@@ -1,0 +1,16 @@
+<div class="layout-wrapper" [ngClass]="{ 'collapsed': collapsed, 'mobile-overlay': mobileSidebarActive }">
+  <app-topbar (toggleSidebar)="onToggle()"></app-topbar>
+
+  <div class="layout-container">
+    <app-sidebar [collapsed]="collapsed" [mobileActive]="mobileSidebarActive" (navigate)="onNavigateFromSidebar()"></app-sidebar>
+
+    <div class="layout-main-container" (click)="mobileSidebarActive && (mobileSidebarActive = false)">
+      <main class="layout-main">
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+  <div class="layout-mask" *ngIf="mobileSidebarActive" (click)="mobileSidebarActive=false"></div>
+</div>
