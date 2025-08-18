@@ -75,6 +75,8 @@
 .mobile-wrapper {
   position: relative;
   overflow: hidden;
+  /* ensure masks match page background on mobile */
+  --mask-color: #ffffff;
 }
 
 .horizontal {
@@ -227,4 +229,30 @@
   100% { transform: translate3d(0, 0, 0); }
 }
 
+
+/* Responsive sizing so cards are fully visible on small screens */
+@media (max-width: 900px) {
+  :host { height: 100%; }
+  .mobile-wrapper { height: 100%; }
+  .horizontal { gap: 0.75rem; }
+  .card { min-width: 200px; min-height: 240px; padding: 0.75rem; }
+  .mask-left, .mask-right { width: 56px; }
+}
+
+@media (max-width: 600px) {
+  .horizontal { gap: 0.625rem; }
+  .card { min-width: 180px; min-height: 220px; }
+  .mask-left, .mask-right { width: 48px; }
+  /* show full image inside small thumbnails */
+  .media img { width: 80px; height: 80px; object-fit: contain; background: #fff; }
+}
+
+@media (max-width: 480px) {
+  .horizontal { gap: 0.5rem; }
+  .card { min-width: 165px; min-height: 210px; }
+  .mask-left, .mask-right { width: 40px; }
+  .media img { width: 72px; height: 72px; }
+  /* keep image-only cards fully visible if sources have varying aspect ratios */
+  .card.image-only img { object-fit: contain; background: #fff; }
+}
 

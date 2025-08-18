@@ -57,7 +57,7 @@ export class PreviewScrollerComponent implements OnInit, OnDestroy {
 
   private setupResponsiveData(): void {
     const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-    const source = this.items ?? [];
+    const source = this.items ?? [] 
 
     if (isDesktop) {
       // Distribute items into 3 columns, keep order stable

@@ -213,8 +213,19 @@
    Collapses to a single column; the scroller section hides under 900px.
    ===================================================================== */
 @media (max-width: 900px) {
+  /* Allow page to scroll on small screens so content (incl. social buttons) isn't clipped */
+  .auth-wrapper {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+
   /* Single column layout on small screens */
-  .auth-grid { grid-template-columns: 1fr; padding: 16px; }
+  .auth-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    overflow: visible; /* don't clip the bottom of the form */
+  }
 
   /* Hide the desktop scroller column inside the grid */
   .auth-right { display: none; }
@@ -233,6 +244,9 @@
 
   .auth-topbar { padding: 12px 16px; }
 
+  /* Remove bottom fade overlay which can visually cover bottom content */
+  .auth-wrapper::after { display: none; }
+
   /* Ensure the logo scales nicely on phones */
   .brand-logo {
     height: 50px;
@@ -247,6 +261,10 @@
     transform: none;
     margin-left: auto; /* push to the right side */
   }
+
+  /* Make mobile preview occupy full screen height */
+  .block.lg\:hidden { height: 100vh; }
+  .block.lg\:hidden app-preview-scroller { display: block; height: 100%; }
 }
 
 /* Extra-small devices */
