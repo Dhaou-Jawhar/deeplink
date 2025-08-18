@@ -1,0 +1,243 @@
+/* Reuse auth layout styles from register component */
+
+/* Wrapper and top-level layout */
+.auth-wrapper {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  --page-fade-color: #ffffff;
+}
+
+
+
+.brand { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+  color: #111216; 
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.brand-logo { 
+  height: 50px; 
+  width: auto; 
+  display: block; 
+}
+
+/* Centered container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  padding: 24px;
+  min-height: 0;
+}
+
+/* Card + form elements */
+.login-card {
+  width: 100%;
+  max-width: 640px;
+  background: transparent;
+  padding: 28px;
+}
+
+.login-header { 
+  text-align: center; 
+  margin-bottom: 24px; 
+}
+.login-header h2 { 
+  margin: 0 0 6px 0; 
+  font-size: 22px; 
+  color: #111216;
+  font-weight: 600;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group { 
+  margin-bottom: 0; 
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #111216;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-size: 14px;
+  transition: box-shadow .2s, border-color .2s;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #7c4dff;
+  box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.15);
+}
+
+.form-input:invalid {
+  border-color: #ef4444;
+}
+
+.form-input:invalid:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+.form-info {
+  padding: 16px 0;
+  margin: 8px 0;
+}
+
+.form-info p {
+  margin: 0 0 8px 0;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.form-info p:last-child {
+  margin-bottom: 0;
+}
+
+.btn {
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  gap: 10px; 
+  cursor: pointer; 
+  text-decoration: none; 
+  user-select: none;
+  border: 0; 
+  border-radius: 999px; 
+  height: 44px; 
+  padding: 0 16px;
+  font-weight: 600; 
+  font-size: 14px;
+  transition: transform .12s ease, box-shadow .2s ease;
+  font-family: inherit;
+}
+
+.btn-full { 
+  width: 100%; 
+}
+
+.btn-primary { 
+  background: #935CFF; 
+  color: #fff; 
+  box-shadow: 0 10px 30px rgba(147, 92, 255, .35); 
+}
+
+.btn-primary:hover:not(:disabled) { 
+  transform: translateY(-1px); 
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Progress indicators */
+.progress-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.indicator.completed {
+  background-color: #935CFF;
+}
+
+.indicator.active {
+  background-color: #935CFF;
+  position: relative;
+}
+
+.indicator.active::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid rgba(147, 92, 255, 0.3);
+  border-radius: 50%;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  /* Allow page to scroll and avoid clipping bottom content on small screens */
+  .auth-wrapper { 
+    height: auto; 
+    min-height: 100vh; 
+    overflow: auto; 
+  }
+
+  .auth-container { 
+    padding: 16px; 
+  }
+  
+  .login-card { 
+    max-width: 100%; 
+    width: 100%; 
+  }
+  
+  .brand-logo { 
+    height: 50px; 
+    max-width: 60vw; 
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo { 
+    height: 40px; 
+    max-width: 56vw; 
+  }
+  
+  .login-card {
+    padding: 20px;
+  }
+  
+  .login-header h2 {
+    font-size: 20px;
+  }
+  
+  .form-input {
+    height: 40px;
+    font-size: 13px;
+  }
+  
+  .btn {
+    height: 40px;
+    font-size: 13px;
+  }
+}
+
+

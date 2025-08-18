@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { LoginPreviewModule } from '../../modules/login-preview/login-preview.module';
+import { PseudoComponent } from './pseudo/pseudo.component';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { LoginPreviewModule } from '../../modules/login-preview/login-preview.mo
   imports: [
     CommonModule,
     RegisterRoutingModule,
-    LoginPreviewModule
+    LoginPreviewModule,
+    PseudoComponent
   ]
 })
 export class RegisterModule { } 

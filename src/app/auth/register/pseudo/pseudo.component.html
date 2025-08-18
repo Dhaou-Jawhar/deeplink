@@ -1,0 +1,49 @@
+<div class="auth-wrapper">
+  <div class="auth-container">
+    <div class="login-card">
+      <div class="login-header">
+        <a class="brand" routerLink="/">
+          <img src="assets/image/touchhit.png" alt="Touchhit" class="brand-logo" />
+        </a>
+        <h2>Comment devrions-nous vous appeler ?</h2>
+      </div>
+
+      <form class="login-form" (ngSubmit)="onSubmit()" #pseudoForm="ngForm">
+        <div class="form-group">
+          <label for="pseudo" class="form-label">Pseudo</label>
+          <input 
+            type="text" 
+            id="pseudo" 
+            name="pseudo" 
+            placeholder="Pseudo"
+            [(ngModel)]="pseudo"
+            #pseudoInput="ngModel"
+            required 
+            minlength="3"
+            maxlength="20"
+            pattern="^[a-zA-Z0-9_-]+$"
+            class="form-input">
+        </div>
+
+        <div class="form-info">
+          <p>Je souhaite recevoir des mises à jour, des offres spéciales et des e-mails promotionnels.</p>
+          <p>Je comprends que je peux me désinscrire à tout moment.</p>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-primary btn-full"
+          [disabled]="!pseudoForm.valid || isSubmitting">
+          {{ isSubmitting ? 'Chargement...' : 'Suivant' }}
+        </button>
+
+        <!-- Progress indicators -->
+        <div class="progress-indicators">
+          <span class="indicator completed"></span>
+          <span class="indicator active"></span>
+          <span class="indicator"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
