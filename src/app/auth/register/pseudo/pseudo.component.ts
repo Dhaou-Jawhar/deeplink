@@ -18,7 +18,7 @@ export class PseudoComponent {
   constructor(private router: Router) {}
 
   onSubmit(): void {
-    if (this.pseudo.trim().length < 3) {
+    if (this.pseudo.trim().length < 2) {
       return;
     }
 

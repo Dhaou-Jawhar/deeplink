@@ -3,7 +3,7 @@
     <div class="login-card">
       <div class="login-header">
         <a class="brand" routerLink="/">
-          <img src="assets/image/touchhit.png" alt="Touchhit" class="brand-logo" />
+          <img src="assets/image/touchhit.png" alt="touchh.it" class="brand-logo" />
         </a>
         <h2>Comment devrions-nous vous appeler ?</h2>
       </div>
@@ -11,37 +11,47 @@
       <form class="login-form" (ngSubmit)="onSubmit()" #pseudoForm="ngForm">
         <div class="form-group">
           <label for="pseudo" class="form-label">Pseudo</label>
-          <input 
-            type="text" 
-            id="pseudo" 
-            name="pseudo" 
+          <input
+            type="text"
+            id="pseudo"
+            name="pseudo"
             placeholder="Pseudo"
             [(ngModel)]="pseudo"
             #pseudoInput="ngModel"
-            required 
-            minlength="3"
+            required
+            minlength="2"
             maxlength="20"
             pattern="^[a-zA-Z0-9_-]+$"
-            class="form-input">
+            class="form-input"
+            [attr.aria-invalid]="pseudoInput.invalid && pseudoInput.touched"
+            [attr.aria-describedby]="pseudoInput.invalid && pseudoInput.touched ? 'pseudo-error' : null">
+          <div *ngIf="pseudoInput.invalid && pseudoInput.touched" id="pseudo-error" class="error-message">
+            Veuillez saisir au moins 2 caractères.
+          </div>
         </div>
 
-        <div class="form-info">
-          <p>Je souhaite recevoir des mises à jour, des offres spéciales et des e-mails promotionnels.</p>
-          <p>Je comprends que je peux me désinscrire à tout moment.</p>
+        <div class="form-consent">
+          <label class="consent-label">
+            <input type="checkbox" class="consent-checkbox" checked>
+            <div class="consent-text">
+              <p>Je souhaite recevoir des mises à jour, des offres spéciales et des e-mails promotionnels.</p>
+              <p>Je comprends que je peux me désinscrire à tout moment.</p>
+            </div>
+          </label>
         </div>
 
-        <button 
-          type="submit" 
-          class="btn btn-primary btn-full"
+        <button
+          type="submit"
+          class="btn btn-primary btn-full btn-glow"
           [disabled]="!pseudoForm.valid || isSubmitting">
           {{ isSubmitting ? 'Chargement...' : 'Suivant' }}
         </button>
 
         <!-- Progress indicators -->
         <div class="progress-indicators">
-          <span class="indicator completed"></span>
-          <span class="indicator active"></span>
-          <span class="indicator"></span>
+          <span class="indicator active-pill"></span>
+          <span class="indicator inactive-dot"></span>
+          <span class="indicator inactive-dot"></span>
         </div>
       </form>
     </div>
