@@ -29,8 +29,8 @@ export class PseudoComponent {
       // Store pseudo in localStorage or service for later use
       localStorage.setItem('userPseudo', this.pseudo);
       
-      // Navigate to next step or home
-      this.router.navigate(['/home']);
+      // Navigate to domaine step
+      this.router.navigate(['/auth/register/domaine']);
       
       this.isSubmitting = false;
     }, 1000);

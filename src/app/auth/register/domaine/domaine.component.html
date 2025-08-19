@@ -1,0 +1,53 @@
+<div class="onb-wrap">
+  <!-- Header with logo -->
+  <div class="header">
+    <div class="logo">
+      <i class="pi pi-heart-fill"></i>
+      <span>touchh.it</span>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <h2 class="title">Comment nous avez-vous connu ?</h2>
+  
+  <!-- Cards grid -->
+  <div class="cards-grid">
+    <button 
+      *ngFor="let option of domainOptions" 
+      class="source-card"
+      [class.is-active]="selectedDomain === option.id"
+      (click)="selectDomain(option.id)">
+      <span class="icon-bubble">
+        <i [class]="'pi ' + option.icon"></i>
+      </span>
+      <span class="label">{{ option.label }}</span>
+    </button>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="actions">
+    <button 
+      pButton 
+      type="button" 
+      label="Skip" 
+      class="p-button-text btn-ghost"
+      (click)="skip()">
+    </button>
+    
+    <button 
+      pButton 
+      type="button" 
+      label="Suivant" 
+      class="p-button-rounded btn-primary"
+      [disabled]="!selectedDomain"
+      (click)="continue()">
+    </button>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pager">
+    <span class="dot"></span>
+    <span class="dot active"></span>
+    <span class="dot"></span>
+  </div>
+</div>
