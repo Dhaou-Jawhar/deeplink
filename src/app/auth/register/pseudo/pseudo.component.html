@@ -1,59 +1,59 @@
-<div class="auth-wrapper">
-  <div class="auth-container">
-    <div class="login-card">
-      <div class="login-header">
-        <a class="brand" routerLink="/">
-          <img src="assets/image/touchhit.png" alt="touchh.it" class="brand-logo" />
-        </a>
-        <h2>Comment devrions-nous vous appeler ?</h2>
-      </div>
+<main class="main-container">
+  <div class="content-wrapper">
+    <!-- TouchHit Logo -->
+    <div class="logo-container">
+      <img src="assets/image/touchhit.png" alt="Touchhit" class="touchhit-logo">
+    </div>
 
-      <form class="login-form" (ngSubmit)="onSubmit()" #pseudoForm="ngForm">
-        <div class="form-group">
-          <label for="pseudo" class="form-label">Pseudo</label>
+    <h1 class="form-title">Comment devrions-nous vous appeler ?</h1>
+
+    <form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Pseudo Input -->
+      <div class="form-group">
+        <label for="pseudo" class="form-label">Pseudo</label>
+        <div class="input-container">
           <input
             type="text"
             id="pseudo"
-            name="pseudo"
-            placeholder="Pseudo"
-            [(ngModel)]="pseudo"
-            #pseudoInput="ngModel"
-            required
-            minlength="2"
-            maxlength="20"
-            pattern="^[a-zA-Z0-9_-]+$"
+            formControlName="pseudo"
             class="form-input"
-            [attr.aria-invalid]="pseudoInput.invalid && pseudoInput.touched"
-            [attr.aria-describedby]="pseudoInput.invalid && pseudoInput.touched ? 'pseudo-error' : null">
-          <div *ngIf="pseudoInput.invalid && pseudoInput.touched" id="pseudo-error" class="error-message">
-            Veuillez saisir au moins 2 caractères.
-          </div>
+            [class.invalid]="f['pseudo'].invalid && f['pseudo'].touched"
+            placeholder="Pseudo">
         </div>
-
-        <div class="form-consent">
-          <label class="consent-label">
-            <input type="checkbox" class="consent-checkbox" checked>
-            <div class="consent-text">
-              <p>Je souhaite recevoir des mises à jour, des offres spéciales et des e-mails promotionnels.</p>
-              <p>Je comprends que je peux me désinscrire à tout moment.</p>
-            </div>
-          </label>
+        <!-- Validation Error Message -->
+        <div *ngIf="f['pseudo'].invalid && f['pseudo'].touched" class="error-message">
+          <small *ngIf="f['pseudo'].errors?.['required']">Le pseudo est requis</small>
+          <small *ngIf="f['pseudo'].errors?.['minlength']">Le pseudo doit contenir au moins 2 caractères</small>
         </div>
+      </div>
 
-        <button
-          type="submit"
-          class="btn btn-primary btn-full btn-glow"
-          [disabled]="!pseudoForm.valid || isSubmitting">
-          {{ isSubmitting ? 'Chargement...' : 'Suivant' }}
-        </button>
+      <!-- Subscription Checkbox -->
+      <div class="checkbox-group">
+        <input
+          type="checkbox"
+          id="subscribe"
+          formControlName="subscribe"
+          class="form-checkbox">
+        <label for="subscribe" class="checkbox-label">
+          Je souhaite recevoir des mises à jour, des offres spéciales et des e-mails promotionnels.
+          Je comprends que je peux me désinscrire à tout moment.
+        </label>
+      </div>
 
-        <!-- Progress indicators -->
-        <div class="progress-indicators">
-          <span class="indicator active-pill"></span>
-          <span class="indicator inactive-dot"></span>
-          <span class="indicator inactive-dot"></span>
-        </div>
-      </form>
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="signupForm.invalid">
+        Suivant
+      </button>
+    </form>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
-</div>
+</main>
