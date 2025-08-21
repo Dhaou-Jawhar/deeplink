@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { Router } from '@angular/router';
 
-interface DomainOption {
+interface SurveyOption {
   id: string;
-  label: string;
   icon: string;
-  iconClass?: string;
+  label: string;
+  selected: boolean;
 }
 
 @Component({
@@ -19,38 +18,49 @@ interface DomainOption {
   styleUrl: './domaine.component.css'
 })
 export class DomaineComponent {
-  selectedDomain: string | null = null;
+  title = 'Comment nous avez-vous connu ?';
 
-  domainOptions: DomainOption[] = [
-    { id: 'amis', label: 'Amis ou École', icon: 'pi-graduation-cap', iconClass: 'text-purple-500' },
-    { id: 'newsletter', label: 'Newsletter ou Blog', icon: 'pi-pencil', iconClass: 'text-gray-700' },
-    { id: 'tiktok', label: 'TikTok', icon: 'pi-video', iconClass: 'text-black' },
-    { id: 'travail', label: 'Du travail', icon: 'pi-briefcase', iconClass: 'text-gray-700' },
-    { id: 'google', label: 'Google', icon: 'pi-google', iconClass: 'text-blue-500' },
-    { id: 'youtube', label: 'YouTube', icon: 'pi-youtube', iconClass: 'text-red-500' },
-    { id: 'x', label: 'X', icon: 'pi-twitter', iconClass: 'text-black' },
-    { id: 'linkedin', label: 'LinkedIn', icon: 'pi-linkedin', iconClass: 'text-blue-600' },
-    { id: 'facebook', label: 'Facebook', icon: 'pi-facebook', iconClass: 'text-blue-600' },
-    { id: 'instagram', label: 'Instagram', icon: 'pi-instagram', iconClass: 'text-pink-500' },
-    { id: 'souviens', label: 'Je ne me souviens pas', icon: 'pi-question', iconClass: 'text-gray-500' },
-    { id: 'autre', label: 'Autre', icon: 'pi-ellipsis-h', iconClass: 'text-gray-500' }
+  surveyOptions: SurveyOption[] = [
+    { id: 'friends-school', icon: 'assets/image/icons/548_8532.svg', label: 'Amis ou École', selected: true },
+    { id: 'newsletter-blog', icon: 'assets/image/icons/548_8540.svg', label: 'Newsletter ou Blog', selected: false },
+    { id: 'tiktok', icon: 'assets/image/icons/548_8628.svg', label: 'TikTok', selected: false },
+    { id: 'work', icon: 'assets/image/icons/548_8634.svg', label: 'Du travail', selected: false },
+    { id: 'google', icon: 'assets/image/icons/548_8567.svg', label: 'Google', selected: false },
+    { id: 'youtube', icon: 'assets/image/icons/548_8573.svg', label: 'YouTube', selected: false },
+    { id: 'x', icon: 'assets/image/icons/548_8647.svg', label: 'X', selected: false },
+    { id: 'linkedin', icon: 'assets/image/icons/548_8652.svg', label: 'LinkedIn', selected: false },
+    { id: 'facebook', icon: 'assets/image/icons/548_8596.svg', label: 'Facebook', selected: false },
+    { id: 'instagram', icon: 'assets/image/icons/548_8602.svg', label: 'Instagram', selected: false },
+    { id: 'dont-remember', icon: 'assets/image/icons/548_8661.svg', label: 'Je ne me souviens pas', selected: false },
+    { id: 'other', icon: 'assets/image/icons/548_8669.svg', label: 'Autre', selected: false }
   ];
 
-  constructor(private router: Router) {}
+  currentStep = 2;
+  totalSteps = 3;
 
-  selectDomain(domainId: string) {
-    this.selectedDomain = domainId;
+  selectOption(optionId: string): void {
+    this.surveyOptions = this.surveyOptions.map(option => ({
+      ...option,
+      selected: option.id === optionId
+    }));
   }
 
-  skip() {
-    // Navigate to next step or home
-    console.log('Skip clicked');
+  onSkip(): void {
+    console.log('Skip button clicked');
+    // Implement skip logic here
   }
 
-  continue() {
-    if (this.selectedDomain) {
-      console.log('Selected domain:', this.selectedDomain);
-      // Navigate to next step
-    }
+  onNext(): void {
+    const selectedOption = this.surveyOptions.find(option => option.selected);
+    console.log('Next button clicked', selectedOption);
+    // Implement next step logic here
+  }
+
+  getDots(): number[] {
+    return Array.from({ length: this.totalSteps }, (_, i) => i + 1);
+  }
+
+  isDotActive(step: number): boolean {
+    return step === this.currentStep;
   }
 }

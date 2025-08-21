@@ -1,53 +1,39 @@
-<div class="onb-wrap">
-  <!-- Header with logo -->
-  <div class="header">
-    <div class="logo">
-      <i class="pi pi-heart-fill"></i>
-      <span>touchh.it</span>
+<main class="main-container">
+  <div class="form-wrapper">
+    <header class="form-header">
+      <div class="logo">
+        <img src="assets/image/touchhit.png" alt="TouchHit Logo" class="logo-image">
+      </div>
+    </header>
+
+    <h1 class="form-title">{{ title }}</h1>
+
+    <form class="survey-form">
+      <div class="options-grid">
+        <button
+          type="button"
+          class="option-card"
+          [class.selected]="option.selected"
+          *ngFor="let option of surveyOptions"
+          (click)="selectOption(option.id)"
+        >
+          <img [src]="option.icon" [alt]="option.label + ' icon'" class="option-icon">
+          <span class="option-label">{{ option.label }}</span>
+        </button>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-skip" (click)="onSkip()">Skip</button>
+        <button type="submit" class="btn btn-next">Suivant</button>
+      </div>
+    </form>
+
+    <div class="pagination-dots">
+      <span
+        class="dot"
+        [class.active]="isDotActive(step)"
+        *ngFor="let step of getDots()"
+      ></span>
     </div>
   </div>
-
-  <!-- Main content -->
-  <h2 class="title">Comment nous avez-vous connu ?</h2>
-  
-  <!-- Cards grid -->
-  <div class="cards-grid">
-    <button 
-      *ngFor="let option of domainOptions" 
-      class="source-card"
-      [class.is-active]="selectedDomain === option.id"
-      (click)="selectDomain(option.id)">
-      <span class="icon-bubble">
-        <i [class]="'pi ' + option.icon"></i>
-      </span>
-      <span class="label">{{ option.label }}</span>
-    </button>
-  </div>
-
-  <!-- Action buttons -->
-  <div class="actions">
-    <button 
-      pButton 
-      type="button" 
-      label="Skip" 
-      class="p-button-text btn-ghost"
-      (click)="skip()">
-    </button>
-    
-    <button 
-      pButton 
-      type="button" 
-      label="Suivant" 
-      class="p-button-rounded btn-primary"
-      [disabled]="!selectedDomain"
-      (click)="continue()">
-    </button>
-  </div>
-
-  <!-- Pagination -->
-  <div class="pager">
-    <span class="dot"></span>
-    <span class="dot active"></span>
-    <span class="dot"></span>
-  </div>
-</div>
+</main>
