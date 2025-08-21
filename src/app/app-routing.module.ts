@@ -6,7 +6,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+            { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
 
             // Public authentication routes (no layout wrapper)
             { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
