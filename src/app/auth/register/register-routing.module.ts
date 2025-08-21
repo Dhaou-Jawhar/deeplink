@@ -11,6 +11,10 @@ const routes: Routes = [
   { 
     path: 'domaine', 
     loadComponent: () => import('./domaine/domaine.component').then(m => m.DomaineComponent)
+  },
+  { 
+    path: 'function', 
+    loadComponent: () => import('./function/function.component').then(m => m.FunctionComponent)
   }
 ];
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { Router, ActivatedRoute } from '@angular/router';
 
 interface SurveyOption {
   id: string;
@@ -19,6 +20,8 @@ interface SurveyOption {
 })
 export class DomaineComponent {
   title = 'Comment nous avez-vous connu ?';
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   surveyOptions: SurveyOption[] = [
     { id: 'friends-school', icon: 'assets/image/icons/548_8532.svg', label: 'Amis ou École', selected: true },
@@ -47,13 +50,15 @@ export class DomaineComponent {
 
   onSkip(): void {
     console.log('Skip button clicked');
-    // Implement skip logic here
+    // Navigate to function step even when skipping
+    this.router.navigateByUrl('/auth/register/function');
   }
 
   onNext(): void {
     const selectedOption = this.surveyOptions.find(option => option.selected);
     console.log('Next button clicked', selectedOption);
-    // Implement next step logic here
+    // Navigate to the function step
+    this.router.navigateByUrl('/auth/register/function');
   }
 
   getDots(): number[] {
